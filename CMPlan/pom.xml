@@ -7,8 +7,8 @@
 	<name>CMPlan</name>
 	
 	<properties>
-		<spring.version>3.1.1.RELEASE</spring.version>
-		<junit.version>4.10</junit.version>
+		<spring.version>3.1.2.RELEASE</spring.version>
+		<junit.version>4.9</junit.version>
 		<log4j.version>1.2.16</log4j.version>
 		<hibernate.version>4.1.6.Final</hibernate.version>
 	</properties>
@@ -38,6 +38,11 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
@@ -79,43 +84,34 @@
 			<version>${log4j.version}</version>
 		</dependency>
 		
-		<!--	Spring AOP dependency	-->
-		<dependency>
-			<groupId>cglib</groupId>
-			<artifactId>cglib</artifactId>
-			<version>2.2</version>
-		</dependency>
-		
 		<!--	MySQL database driver	-->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.9</version>
+			<version>5.1.21</version>
 		</dependency>
 		
 		<!--	Hibernate framework	-->
 		<dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+        </dependency>
+		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>4.1.6.Final</version>
+			<version>${hibernate.version}</version>
 		</dependency>
-		<!--	Hibernate annotation	-->
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-annotations</artifactId>
-			<version>3.5.6-Final</version>
-		</dependency>
-		
-		<!--	Hibernate library dependency start	-->
+		<!-- Hibernate uses slf4j for logging, for our purposes here use the simple backend -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.5.8</version>
+			<artifactId>slf4j-simple</artifactId>
+			<version>1.6.6</version>
 		</dependency>
+		<!-- Hibernate gives you a choice of bytecode providers between cglib and javassist -->
 		<dependency>
 			<groupId>javassist</groupId>
 			<artifactId>javassist</artifactId>
-			<version>3.12.1.GA</version>
+			<version>3.12.0.GA</version>
 		</dependency>
 		
 		<!--	JACKSON library	-->
@@ -135,6 +131,32 @@
 			<groupId>org.apache.tiles</groupId>
 			<artifactId>tiles-jsp</artifactId>
 			<version>2.1.2</version>
+		</dependency>
+		
+		<!--	The standard Java libraries fail to provide enough methods for manipulation of its core classes	-->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.1</version>
+		</dependency>
+		
+		<!--	Aspectj AOP	-->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>1.7.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjtools</artifactId>
+			<version>1.7.0</version>
+		</dependency>
+		
+		<!--	Cglib AOP Proxy	-->
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib-nodep</artifactId>
+			<version>2.2.2</version>
 		</dependency>
 		
 	</dependencies>

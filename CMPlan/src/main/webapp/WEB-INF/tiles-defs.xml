@@ -11,11 +11,11 @@
 		<put-attribute name="footer" value="/WEB-INF/pages/component/footer.jsp"/>
 	</definition>
 
-	<definition name="monitoring" extends="template.userLogged">
-		<put-attribute name="title" value="Monitoring Page"/>
-		<put-attribute name="filter" value="/WEB-INF/pages/monitoring/filter_monitoring.jsp"/>
-		<put-attribute name="view" value="/WEB-INF/pages/monitoring/view_monitoring.jsp"/>
-		<put-attribute name="form" value="/WEB-INF/pages/monitoring/form_monitoring.jsp"/>
+	<definition name="user" extends="template.userLogged">
+		<put-attribute name="title" value="User Page"/>
+		<put-attribute name="filter" value="/WEB-INF/pages/user/filter_user.jsp"/>
+		<put-attribute name="view" value="/WEB-INF/pages/user/view_user.jsp"/>
+		<put-attribute name="form" value="/WEB-INF/pages/user/form_user.jsp"/>
 	</definition>
 	
 	<definition name="error" extends="template.userLogged">

@@ -8,8 +8,8 @@
 <body>
 	<h2>¡Hello From CMPlan!</h2>
 	<ul>
-		<li><a href="monitoring/monitoring.htm">Go to Monitoring</a></li>
-		<li><a href="monitoring/JSON_Data.htm">Get JSON Data</a></li>
+		<li><a href="user/user.htm">List Users</a></li>
+		<li><a href="user/jlentijo.htm">Get JSON User by Username</a></li>
 	</ul>
 </body>
 </html>

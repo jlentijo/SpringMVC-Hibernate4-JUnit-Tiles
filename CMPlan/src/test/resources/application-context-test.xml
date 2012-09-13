@@ -22,27 +22,22 @@
 	<!--	Scanning package to inject beans with annotations -->
     <context:component-scan base-package="es.begeek"/>
 	
-	<!--	This view resolver translates a view name to a URL and hands the request over to the RequestDispatcher to render the view.	-->
-<!-- 	<bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver"> -->
-<!-- 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/> -->
-<!-- 		<property name="prefix" value="/WEB-INF/pages/"/> -->
-<!-- 		<property name="suffix" value=".jsp"/> -->
-<!-- 	</bean> -->
-	
-	<!--	This view resolver return a tiles definition to render the view	-->
-	<bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-		<property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView"/>
-	</bean>
-	
-	<!--	Define file location tiles config	-->
-	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
-		<property name="definitions">
-			<list><value>/WEB-INF/tiles-defs.xml</value></list>
-		</property>
-	</bean>
-	
 	<!--	Config Database with Hibernate	-->
 	<context:property-placeholder location="classpath:config-ddbb/database.properties"/>
 	<import resource="config-ddbb/beans-hibernate.xml" />
+	
+	<!--	Create custom scope session and request	to junit	-->
+	<bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
+		<property name="scopes">
+			<map>
+				<entry key="session">
+					<bean class="org.springframework.context.support.SimpleThreadScope" />
+				</entry>
+				<entry key="request">
+					<bean class="org.springframework.context.support.SimpleThreadScope" />
+				</entry>
+			</map>
+		</property>
+	</bean>	
 	
 </beans>
