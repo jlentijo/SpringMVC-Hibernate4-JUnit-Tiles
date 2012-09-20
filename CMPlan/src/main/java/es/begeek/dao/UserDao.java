@@ -9,6 +9,6 @@ public interface UserDao {
 	public List<User> listUsers();
 	public void deleteUser( User user );
 	public void saveUser( User user );
-	public User loadUser();
+	public User loadUser( Long idUser );
 	
 }

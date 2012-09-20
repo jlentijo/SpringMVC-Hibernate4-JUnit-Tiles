@@ -6,10 +6,26 @@
 	<title>Index Page CMPlan</title>
 </head>
 <body>
-	<h2>¡Hello From CMPlan!</h2>
-	<ul>
-		<li><a href="user/user.htm">List Users</a></li>
-		<li><a href="user/jlentijo.htm">Get JSON User by Username</a></li>
-	</ul>
+	<h2>Loggin Form with Spring Security 3.1</h2>
+	<form method="POST" action="<c:url value="j_spring_security_check"/>">
+		<table>
+			<tbody>
+				<tr>
+					<td>Username:</td>
+					<td><input type="text" name="j_username"/></td>
+				</tr>
+				<tr>
+					<td>Password:</td>
+					<td><input type="text" name="j_password"/></td>
+				</tr>
+				<tr>
+					<td colspan="2"><c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/></td>
+				</tr>
+				<tr>
+					<td colspan="2"><input type="submit" value="Loggin"/></td>
+				</tr>
+			</tbody>		
+		</table>
+	</form>
 </body>
 </html>

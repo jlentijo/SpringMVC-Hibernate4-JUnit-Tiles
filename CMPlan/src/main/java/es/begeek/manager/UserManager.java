@@ -7,6 +7,9 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.googlecode.ehcache.annotations.Cacheable;
+import com.googlecode.ehcache.annotations.TriggersRemove;
+
 import es.begeek.dao.UserDao;
 import es.begeek.entity.User;
 import es.begeek.utils.Converter;
@@ -20,6 +23,7 @@ public class UserManager {
 	@Autowired
 	private UserDao userDao;
 
+	@Cacheable(cacheName = "user")
 	public List<UserView> listUsers() {
 		if (log.isDebugEnabled()) {
 			log.debug("-> listUsers()");
@@ -27,16 +31,25 @@ public class UserManager {
 		List<User> listUsers = userDao.listUsers();
 		List<UserView> listUsersView = new ArrayList<UserView>();
 		for(User user : listUsers){
-			listUsersView.add(new UserView(user.getIdUser(), user.getUsername(), user.getName(), user.getSurnames()));
+			listUsersView.add((UserView)Converter.convertEntityToDTO(user,new UserView()));
 		}
 		if (log.isDebugEnabled()) {
 			log.debug("<- listUsers( List<UserView> listUsersView:="+ listUsersView +" )");
 		}
 		return listUsersView;
 	}
-	public User loadUser() {
-		return null;
+	@Cacheable(cacheName = "user")
+	public UserView loadUser( Long idUser ) {
+		if (log.isDebugEnabled()) {
+			log.debug("-> loadUser( Long idUser:="+ idUser +" )");
+		}
+		UserView user = (UserView)Converter.convertEntityToDTO(userDao.loadUser(idUser),new UserView());
+		if (log.isDebugEnabled()) {
+			log.debug("<- loadUser( UserView user:="+ user +" )");
+		}
+		return user;
 	}
+	@TriggersRemove(cacheName="user", removeAll=true)
 	public void deleteUser( UserView user ) {
 		if (log.isDebugEnabled()) {
 			log.debug("-> deleteUser( UserView user:="+ user +" )");
@@ -46,6 +59,7 @@ public class UserManager {
 			log.debug("<- deleteUser( void )");
 		}
 	}
+	@TriggersRemove(cacheName="user", removeAll=true)
 	public void saveUser( UserView user ) {
 		if (log.isDebugEnabled()) {
 			log.debug("-> saveUser( UserView user:="+ user +" )");

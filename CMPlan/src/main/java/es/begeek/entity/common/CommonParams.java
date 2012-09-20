@@ -34,7 +34,7 @@ public class CommonParams {
 	@PreUpdate
 	public void onPreUpdate() {
 		if (log.isDebugEnabled()) {
-			log.debug("<- onPreUpdate()");
+			log.debug("-> onPreUpdate()");
 		}
 		this.last_update_date = new Date();
 		if (log.isDebugEnabled()) {

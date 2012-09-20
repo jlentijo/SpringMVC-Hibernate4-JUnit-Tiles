@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import es.begeek.annotation.Timer;
 import es.begeek.manager.UserManager;
 import es.begeek.view.UserView;
 
@@ -18,7 +19,7 @@ public class UserService {
 	@Autowired
 	private UserManager userMgr;
 	
-	@Transactional(readOnly=true)
+	@Timer @Transactional(readOnly=true)
 	public List<UserView> filterList(){
 		if (log.isDebugEnabled()) {
 			log.debug("-> filterList()");
@@ -29,7 +30,18 @@ public class UserService {
 		}
 		return listUsers;
 	}
-	@Transactional
+	@Timer @Transactional(readOnly=true)
+	public UserView loadUser( Long idUser ){
+		if (log.isDebugEnabled()) {
+			log.debug("-> loadUser( Long idUser:="+ idUser +" )");
+		}
+		UserView user = userMgr.loadUser(idUser);
+		if (log.isDebugEnabled()) {
+			log.debug("<- loadUser( UserView user:="+ user +" )");
+		}
+		return user;
+	}
+	@Timer @Transactional
 	public void save( UserView user ){
 		if (log.isDebugEnabled()) {
 			log.debug("-> save( UserView user:="+ user +" )");
@@ -39,7 +51,7 @@ public class UserService {
 			log.debug("<- save( void )");
 		}
 	}
-	@Transactional
+	@Timer @Transactional
 	public void delete( UserView user ){
 		if (log.isDebugEnabled()) {
 			log.debug("-> delete( UserView user:="+ user +" )");

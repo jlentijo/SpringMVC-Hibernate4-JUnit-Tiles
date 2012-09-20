@@ -1,5 +1,7 @@
 package es.begeek.controller;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -10,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import es.begeek.annotation.Timer;
 import es.begeek.service.UserService;
 import es.begeek.view.UserView;
 
@@ -23,7 +24,7 @@ public class UserAction {
 	@Autowired
 	private UserService userSvc;
 	
-	@RequestMapping("/listUser.htm")
+	@RequestMapping("/initUser.htm")
 	public ModelAndView init(){
 		if (log.isDebugEnabled()) {
 			log.debug("-> init()");
@@ -35,7 +36,28 @@ public class UserAction {
 		}
 		return model;
 	}
-	@Timer
+	@RequestMapping(value="/listUser.htm", method = RequestMethod.GET)
+	public @ResponseBody List<UserView> list(){
+		if (log.isDebugEnabled()) {
+			log.debug("-> list()");
+		}
+		List<UserView> listUsers = userSvc.filterList();
+		if (log.isDebugEnabled()) {
+			log.debug("<- list( List<UserView> listUser:="+ listUsers +" )");
+		}
+		return listUsers;
+	}
+	@RequestMapping(value="/loadUser/{idUser}.htm", method = RequestMethod.GET)
+	public @ResponseBody UserView loadUser( @PathVariable Long idUser ){
+		if (log.isDebugEnabled()) {
+			log.debug("-> loadUser( Long idUser:="+ idUser +" )");
+		}
+		UserView user = userSvc.loadUser(idUser);
+		if (log.isDebugEnabled()) {
+			log.debug("<- loadUser( UserView user:="+ user +" )");
+		}
+		return user;
+	}
 	@RequestMapping(value="/saveUser.htm")
 	public ModelAndView save(){
 		if (log.isDebugEnabled()) {
@@ -62,16 +84,4 @@ public class UserAction {
 		}
 		return model;
 	}
-	@RequestMapping(value="/{username}.htm", method = RequestMethod.GET)
-	public @ResponseBody UserView loadUser( @PathVariable String username ){
-		if (log.isDebugEnabled()) {
-			log.debug("-> jsonMethod( String username:="+ username +" )");
-		}
-		UserView user = new UserView(1L,username,"Juan Manuel","Lentijo Mondéjar");
-		if (log.isDebugEnabled()) {
-			log.debug("<- jsonMethod( UserView user:="+ user +" )");
-		}
-		return user;
-	}
-	
 }

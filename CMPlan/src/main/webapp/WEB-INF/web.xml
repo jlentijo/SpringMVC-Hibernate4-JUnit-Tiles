@@ -18,6 +18,12 @@
 		<param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
 	</context-param>
 	
+	<!--	File configuration of Spring Security	-->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:application-context-security.xml</param-value>
+	</context-param>
+	
 	<!--	Listener Log4j	-->
 	<listener>
 		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
@@ -27,6 +33,12 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	
+	<!--	Filter Spring security	-->
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
 	
 	<!--	Encoding UTF-8	-->
 	<filter>
@@ -42,15 +54,14 @@
 		</init-param>
 	</filter>
 	
-	<!--	Custom error pages	-->
-	<error-page>
-		<error-code>404</error-code>
-		<location>/error/404.htm</location>
-	</error-page>
-	
 	<filter-mapping>
 		<filter-name>characterEncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/WEB-INF/pages/*</url-pattern>
+		<url-pattern>/index.jsp</url-pattern>
 	</filter-mapping>
 	
 	<servlet>
@@ -65,5 +76,11 @@
 		<servlet-name>dispatcher</servlet-name>
 		<url-pattern>*.htm</url-pattern>
 	</servlet-mapping>
+	
+	<!--	Custom error pages	-->
+	<error-page>
+		<error-code>404</error-code>
+		<location>/error/404.htm</location>
+	</error-page>
 	
 </web-app>

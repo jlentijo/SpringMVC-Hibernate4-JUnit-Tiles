@@ -2,19 +2,21 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	xmlns:ehcache="http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
 	http://www.springframework.org/schema/aop
 	http://www.springframework.org/schema/aop/spring-aop.xsd
 	http://www.springframework.org/schema/context
-	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/context/spring-context-3.1.xsd
 	http://www.springframework.org/schema/mvc
-	http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+	http://www.springframework.org/schema/mvc/spring-mvc.xsd 
+	http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring
+	http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring/ehcache-spring-1.2.xsd">
 	
 	<!--	Enable annotations SpringMVC	-->
-	<context:annotation-config/>
-	
-	<!--	Enable caching annotations	-->
 	<mvc:annotation-driven />
+	<context:annotation-config/>
 	
 	<!--	Configure the proxy to the aspects defined in our application	-->
     <aop:aspectj-autoproxy />
@@ -25,6 +27,18 @@
 	<!--	Config Database with Hibernate	-->
 	<context:property-placeholder location="classpath:config-ddbb/database.properties"/>
 	<import resource="config-ddbb/beans-hibernate.xml" />
+	
+	<!--	Enable caching annotations with Ehcache	-->
+    <ehcache:annotation-driven create-missing-caches="true" default-cache-key-generator="customKeyGenerator"/>
+	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation" value="classpath:ehcache.xml" />
+	</bean>
+	<bean id="customKeyGenerator" class="es.begeek.cache.CustomKeyGenerator" />
+<!-- 	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager"> -->
+<!-- 		<property name="cacheManager" ref="ehcache"/> -->
+<!-- 	</bean> -->
+	<!--	Ehcache library setup	-->
+<!--     <bean id="ehcache" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean" p:config-location="classpath:ehcache.xml"/> -->
 	
 	<!--	Create custom scope session and request	to junit	-->
 	<bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">

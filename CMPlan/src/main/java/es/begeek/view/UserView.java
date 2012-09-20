@@ -1,10 +1,12 @@
 package es.begeek.view;
 
-import org.apache.log4j.Logger;
+import java.io.Serializable;
 
-public class UserView {
+public class UserView implements Serializable{
 	
-	private final Logger log = Logger.getLogger(this.getClass());
+	public static long ID_USER_LOGGED = 1;
+	
+	private static final long serialVersionUID = 1L;
 	
 	private Long idUser;
 	private String username;
@@ -16,26 +18,15 @@ public class UserView {
 	/*
 	 * CONSTRUCTORS	
 	 */
+	public UserView() {}
 	public UserView(Long idUser){
-		if(log.isDebugEnabled()){
-			log.debug("-> new UserView( Long idUser:="+ idUser +" )");
-		}
 		this.idUser = idUser;
-		if(log.isDebugEnabled()){
-			log.debug("<- new UserView( void )");
-		}
 	}
 	public UserView(Long idUser, String username, String name, String surnames){
-		if(log.isDebugEnabled()){
-			log.debug("-> new UserView( Long idUser:="+ idUser +", String username:="+ username +", String name:="+ name +", String surnames:="+ surnames +" )");
-		}
 		this.idUser = idUser;
 		this.username = username;
 		this.name = name;
 		this.surnames = surnames;
-		if(log.isDebugEnabled()){
-			log.debug("<- new UserView( void )");
-		}
 	}
 	/*
 	 * GETTERS

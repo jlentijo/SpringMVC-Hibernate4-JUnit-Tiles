@@ -22,7 +22,7 @@ public class TimerAspect extends CommonAspect{
 			result_method = call.proceed();
 		}finally{
 			this.time_elapsed = ((double)System.currentTimeMillis()-this.time_elapsed)/1000.0;
-			Logger.getLogger(call.getTarget().getClass().getName()).info("-> "+ method.getName() +"( TIME_ELAPSED := "+ this.time_elapsed +" )");
+			Logger.getLogger(call.getTarget().getClass().getName()).info("<- "+ method.getName() +"( TIME_ELAPSED := "+ this.time_elapsed +" )");
 		}
 		return result_method;
     }

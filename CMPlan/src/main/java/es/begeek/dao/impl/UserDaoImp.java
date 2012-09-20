@@ -32,8 +32,15 @@ public class UserDaoImp implements UserDao{
 		}
 		return listUsers;
 	}
-	public User loadUser() {
-		return null;
+	public User loadUser( Long idUser ) {
+		if (log.isDebugEnabled()) {
+			log.debug("-> loadUser( Long idUser:="+ idUser +" )");
+		}
+		User user = (User) sessionFactory.getCurrentSession().load(User.class, idUser);
+		if (log.isDebugEnabled()) {
+			log.debug("<- listUsers( User user:="+ user +" )");
+		}
+		return user;
 	}
 	public void deleteUser( User user ) {
 		if (log.isDebugEnabled()) {
