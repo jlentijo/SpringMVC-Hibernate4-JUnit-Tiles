@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+    xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:sec="http://www.springframework.org/schema/security"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	http://www.springframework.org/schema/security 
+	http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+	<http pattern="/css/**" security="none"/>
+
+	<global-method-security pre-post-annotations="enabled" />
+
+	<http use-expressions="true" access-denied-page="/error/403.htm">
+		
+		<intercept-url pattern="/user/saveUser.htm" access="hasAnyRole('manager','office-manager')" />
+<!-- 		<intercept-url pattern="/user/initUsers.htm" access="isAuthenticated()" /> -->
+<!-- 		<intercept-url pattern="/user/listUsers.htm" access="isAuthenticated()" /> -->
+		<intercept-url pattern="/user/**" access="isAuthenticated()" />
+		<intercept-url pattern="/index.jsp" access="permitAll" />
+		<intercept-url pattern="/**" access="denyAll" />
+		
+		<form-login login-page="/index.jsp" authentication-failure-url="/index.jsp?login_error=1" always-use-default-target="true" 
+			default-target-url="/user/initUser.htm"/>
+		
+		<logout logout-success-url="/index.jsp" invalidate-session="true" logout-url="/logout.htm"/>
+		
+		<session-management invalid-session-url="/index.jsp">
+			<concurrency-control max-sessions="1" error-if-maximum-exceeded="true"/>
+		</session-management>
+		
+	</http>
+
+	<!-- Gestión de usuarios mediante un proveedor de servicios de usuarios: -->
+<!-- 	<authentication-manager alias="autenticationManagerUserService"> -->
+<!-- 		<authentication-provider user-service-ref="UserDetailsServiceBean"> -->
+<!-- 		<password-encoder hash="md5"/> -->
+<!-- 		</authentication-provider> -->
+<!-- 	</authentication-manager> -->
+	<!-- 	Gestion de los permisos mediante anotaciones en el controller o service -->
+<!-- 	<beans:bean id="expressionHandler" class="org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler"> -->
+<!-- 		<beans:property name="permissionEvaluator" ref="permissionEvaluator"/> -->
+<!-- 	</beans:bean> -->
+<!-- 	<beans:bean id="permissionEvaluator" class="security.CustomPermissionEvaluator" /> -->
+
+	<authentication-manager>
+		<authentication-provider>
+			<user-service>
+				<user name="admin" password="admin" authorities="mamager,office-manager" />
+				<user name="manager" password="manager" authorities="manager" />
+				<user name="juanma" password="juanma" authorities="user" />
+				<user name="guess" password="guess" authorities="user" />
+			</user-service>
+		</authentication-provider>
+	</authentication-manager>
+
+</beans:beans>

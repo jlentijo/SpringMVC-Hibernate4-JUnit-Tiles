@@ -7,18 +7,12 @@
 	<title><tiles:insertAttribute name="title" ignore="true"/></title>
 </head>
 <body>
-	<table border="1" cellpadding="2" cellspacing="2" align="center">
+	<table border="0" cellpadding="0" cellspacing="0" align="center" width="100%">
 		<tr>
 			<td><tiles:insertAttribute name="header"/></td>
 		</tr>
 		<tr>
-			<td><tiles:insertAttribute name="filter"/></td>
-		</tr>
-		<tr>
-			<td><tiles:insertAttribute name="view"/></td>
-		</tr>
-		<tr>
-			<td><tiles:insertAttribute name="form"/></td>
+			<td><tiles:insertAttribute name="page"/></td>
 		</tr>
 		<tr>
 			<td><tiles:insertAttribute name="footer"/></td>

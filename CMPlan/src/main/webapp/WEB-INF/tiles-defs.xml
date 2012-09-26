@@ -2,25 +2,26 @@
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN" "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 <tiles-definitions>
 
-	<definition name="template.userLogged" template="/WEB-INF/pages/component/template/userLogged.jsp">
+	<definition name="template" template="/WEB-INF/pages/component/template/template.jsp">
 		<put-attribute name="title" value=""/>
 		<put-attribute name="header" value="/WEB-INF/pages/component/header.jsp"/>
-		<put-attribute name="filter" value=""/>
-		<put-attribute name="view" value=""/>
-		<put-attribute name="form" value=""/>
+		<put-attribute name="page" value=""/>
 		<put-attribute name="footer" value="/WEB-INF/pages/component/footer.jsp"/>
 	</definition>
 
-	<definition name="user" extends="template.userLogged">
+	<definition name="user" extends="template">
 		<put-attribute name="title" value="User Page"/>
-		<put-attribute name="filter" value="/WEB-INF/pages/user/filter_user.jsp"/>
-		<put-attribute name="view" value="/WEB-INF/pages/user/view_user.jsp"/>
-		<put-attribute name="form" value="/WEB-INF/pages/user/form_user.jsp"/>
+		<put-attribute name="page" value="/WEB-INF/pages/component/user.jsp"/>
 	</definition>
 	
-	<definition name="error" extends="template.userLogged">
+	<definition name="home" extends="template">
+		<put-attribute name="title" value="Home"/>
+		<put-attribute name="page" value="/index.jsp"/>
+	</definition>
+	
+	<definition name="error" extends="template">
 		<put-attribute name="title" value="Error Page"/>
-		<put-attribute name="view" value="/WEB-INF/pages/error/view_error.jsp"/>
+		<put-attribute name="view" value="/WEB-INF/pages/error/error.jsp"/>
 	</definition>
  
 </tiles-definitions>

@@ -16,9 +16,21 @@ public class ErrorAction {
 			log.debug("-> error404()");
 		}
 		ModelAndView model = new ModelAndView("error");
-		model.addObject("messaege_error", "'La pagina solicitada no existe!");
+		model.addObject("message_error", "La pagina solicitada no existe!");
 		if (log.isDebugEnabled()) {
 			log.debug("<- error404( ModelAndView model:="+ model +" )");
+		}
+		return model;
+	}
+	@RequestMapping("403.htm")
+	public ModelAndView error403(){
+		if (log.isDebugEnabled()) {
+			log.debug("-> error403()");
+		}
+		ModelAndView model = new ModelAndView("error");
+		model.addObject("message_error", "No tiene permisos para ver la página solicitada!");
+		if (log.isDebugEnabled()) {
+			log.debug("<- error403( ModelAndView model:="+ model +" )");
 		}
 		return model;
 	}

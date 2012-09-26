@@ -46,7 +46,7 @@
 		<property name="configLocation" value="classpath:ehcache.xml" />
 	</bean>
 	<bean id="customKeyGenerator" class="es.begeek.cache.CustomKeyGenerator" />
-	<bean id="customCacheResolver" class="es.begeek.cache.customCacheResolver" />
+	<bean id="customCacheResolver" class="es.begeek.cache.CustomCacheResolver" />
 	
 <!-- 	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager"> -->
 <!-- 		<property name="cacheManager" ref="ehcache"/> -->

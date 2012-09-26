@@ -1,0 +1,36 @@
+body{
+	text-align: center;
+	color: #4C494E;
+	font-size: 12px;
+}
+form.form_loggin{
+	border: 1px solid #4C494E;
+	background-color:  #E0E0E0;
+	border-radius: 5px;
+	width: 50%;
+}
+div.error_loggin{
+	border: 1px solid red;
+	color: red;
+	font-weight: bold;
+	width: 100%;
+}
+table.form{
+	width: 100%;
+}
+table.form label{
+	width: 40%;
+	font-style: italic;
+	display: inline-block;
+}
+table.form input[type=text]{
+	width: 40%;
+	display: inline-block;
+	border: 1px solid #4C494E; 
+}
+table.form input.button{
+	border: 1px solid #4C494E;
+	border-radius: 2px;
+	font-weight: bold;
+	background-color: white;
+}

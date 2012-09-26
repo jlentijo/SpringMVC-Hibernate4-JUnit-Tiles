@@ -1,1 +1,0 @@
-<h1>Layout Filter Monitoring</h1>

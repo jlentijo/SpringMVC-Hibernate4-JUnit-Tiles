@@ -36,19 +36,19 @@ public class UserAction {
 		}
 		return model;
 	}
-	@RequestMapping(value="/listUser.htm", method = RequestMethod.GET)
-	public @ResponseBody List<UserView> list(){
-		if (log.isDebugEnabled()) {
-			log.debug("-> list()");
-		}
-		List<UserView> listUsers = userSvc.filterList();
-		if (log.isDebugEnabled()) {
-			log.debug("<- list( List<UserView> listUser:="+ listUsers +" )");
-		}
-		return listUsers;
-	}
+//	@RequestMapping(value="/listUser.htm", method = RequestMethod.GET)
+//	public @ResponseBody List<UserView> list(){
+//		if (log.isDebugEnabled()) {
+//			log.debug("-> list()");
+//		}
+//		List<UserView> listUsers = userSvc.filterList();
+//		if (log.isDebugEnabled()) {
+//			log.debug("<- list( List<UserView> listUser:="+ listUsers +" )");
+//		}
+//		return listUsers;
+//	}
 	@RequestMapping(value="/loadUser/{idUser}.htm", method = RequestMethod.GET)
-	public @ResponseBody UserView loadUser( @PathVariable Long idUser ){
+	public UserView loadUser( @PathVariable Long idUser ){
 		if (log.isDebugEnabled()) {
 			log.debug("-> loadUser( Long idUser:="+ idUser +" )");
 		}
@@ -58,7 +58,7 @@ public class UserAction {
 		}
 		return user;
 	}
-	@RequestMapping(value="/saveUser.htm")
+	@RequestMapping(value="/saveUser.htm", method = RequestMethod.POST)
 	public ModelAndView save(){
 		if (log.isDebugEnabled()) {
 			log.debug("-> save()");
@@ -71,7 +71,7 @@ public class UserAction {
 		}
 		return model;
 	}
-	@RequestMapping(value="/deleteUser/{idUser}.htm")
+	@RequestMapping(value="/deleteUser/{idUser}.htm", method = RequestMethod.GET)
 	public ModelAndView delete( @PathVariable Long idUser ){
 		if (log.isDebugEnabled()) {
 			log.debug("-> delete( Long idUser:="+ idUser +" )");

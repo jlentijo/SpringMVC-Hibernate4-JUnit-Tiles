@@ -34,11 +34,7 @@
 		<property name="configLocation" value="classpath:ehcache.xml" />
 	</bean>
 	<bean id="customKeyGenerator" class="es.begeek.cache.CustomKeyGenerator" />
-<!-- 	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager"> -->
-<!-- 		<property name="cacheManager" ref="ehcache"/> -->
-<!-- 	</bean> -->
-	<!--	Ehcache library setup	-->
-<!--     <bean id="ehcache" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean" p:config-location="classpath:ehcache.xml"/> -->
+	<bean id="customCacheResolver" class="es.begeek.cache.CustomCacheResolver" />
 	
 	<!--	Create custom scope session and request	to junit	-->
 	<bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
