@@ -38,7 +38,7 @@ public class UserManager {
 		}
 		return listUsersView;
 	}
-	@Cacheable(cacheName = "user")
+	//@Cacheable(cacheName = "user")
 	public UserView loadUser( Long idUser ) {
 		if (log.isDebugEnabled()) {
 			log.debug("-> loadUser( Long idUser:="+ idUser +" )");

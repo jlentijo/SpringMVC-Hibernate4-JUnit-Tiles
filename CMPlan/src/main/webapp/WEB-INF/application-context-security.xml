@@ -9,6 +9,7 @@
 	http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
 	<http pattern="/css/**" security="none"/>
+	<http pattern="/img/**" security="none"/>
 
 	<global-method-security pre-post-annotations="enabled" />
 
@@ -18,15 +19,15 @@
 <!-- 		<intercept-url pattern="/user/initUsers.htm" access="isAuthenticated()" /> -->
 <!-- 		<intercept-url pattern="/user/listUsers.htm" access="isAuthenticated()" /> -->
 		<intercept-url pattern="/user/**" access="isAuthenticated()" />
-		<intercept-url pattern="/index.jsp" access="permitAll" />
+		<intercept-url pattern="/home.htm" access="permitAll" />
 		<intercept-url pattern="/**" access="denyAll" />
 		
-		<form-login login-page="/index.jsp" authentication-failure-url="/index.jsp?login_error=1" always-use-default-target="true" 
+		<form-login login-page="/home.htm" authentication-failure-url="/home.htm?login_error=1" always-use-default-target="true" 
 			default-target-url="/user/initUser.htm"/>
 		
-		<logout logout-success-url="/index.jsp" invalidate-session="true" logout-url="/logout.htm"/>
+		<logout logout-success-url="/home.htm" invalidate-session="true" logout-url="/logout.htm"/>
 		
-		<session-management invalid-session-url="/index.jsp">
+		<session-management invalid-session-url="/home.htm">
 			<concurrency-control max-sessions="1" error-if-maximum-exceeded="true"/>
 		</session-management>
 		

@@ -2,15 +2,65 @@ body{
 	text-align: center;
 	color: #4C494E;
 	font-size: 12px;
+	font-family: monospace;
 }
-form.form_loggin{
-	border: 1px solid #4C494E;
-	background-color:  #E0E0E0;
+/*
+ * CSS SKELETON
+*/
+div.body{
+	width: 80%;
+	display: inline-block;
 	border-radius: 5px;
-	width: 50%;
+	border: 1px solid silver;
+	padding: 5px;
+}
+div.body div.header{
+	width: 100%;
+	display: inline-block;
+	padding: 5px 0px;
+	border-bottom: 2px solid black;
+}
+div.body div.header div.logout{
+	font-weight: bold;
+	float:right;
+}
+div.body div.header div.logout a{
+	text-decoration: none;
+	color: #4C494E;
+}
+div.body div.header div.logout a:HOVER{
+	text-decoration: underline;
+}
+div.body div.header div.username{
+	font-weight: bold;
+	float:left;
+}
+div.body div.page{	
+	width: 100%;
+	padding: 5px 0px;
+}
+div.body div.footer{
+	width: 100%;
+	padding: 5px 0px;
+	border-top: 2px solid black;
+	text-align: right;
+	margin-top: 10px;
+}
+div.title{
+	font-size: 20px;
+	font-weight: bold;
+}
+/*
+ * CSS FORM LOGGIN
+*/
+form.form_loggin{
+	display: inline-block;
+	border-radius: 5px;
+	background-color:  #E0E0E0;
+	padding: 10px;
+	width: 250px;
 }
 div.error_loggin{
-	border: 1px solid red;
 	color: red;
 	font-weight: bold;
 	width: 100%;
@@ -19,18 +69,26 @@ table.form{
 	width: 100%;
 }
 table.form label{
-	width: 40%;
 	font-style: italic;
 	display: inline-block;
 }
-table.form input[type=text]{
-	width: 40%;
+table.form input[type=text], table.form input[type=password]{
 	display: inline-block;
 	border: 1px solid #4C494E; 
 }
 table.form input.button{
 	border: 1px solid #4C494E;
-	border-radius: 2px;
+	border-radius: 5px;
 	font-weight: bold;
 	background-color: white;
+	cursor: pointer;
+}
+/*
+ * CSS USER PAGE
+*/
+table.table_user{
+	display: inline-block;
+}
+table.table_user thead {
+	background: #E0E0E0;
 }

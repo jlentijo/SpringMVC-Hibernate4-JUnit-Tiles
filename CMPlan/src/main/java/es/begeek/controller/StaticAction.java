@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class StaticAction {
 	private final Logger log = Logger.getLogger(this.getClass());
 	
-	@RequestMapping("index.htm")
+	@RequestMapping("/home.htm")
 	public ModelAndView home(){
 		if (log.isDebugEnabled()) {
 			log.debug("-> home()");

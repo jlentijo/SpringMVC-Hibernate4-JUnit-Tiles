@@ -11,17 +11,17 @@
 
 	<definition name="user" extends="template">
 		<put-attribute name="title" value="User Page"/>
-		<put-attribute name="page" value="/WEB-INF/pages/component/user.jsp"/>
+		<put-attribute name="page" value="/WEB-INF/pages/user/user.jsp"/>
 	</definition>
 	
 	<definition name="home" extends="template">
 		<put-attribute name="title" value="Home"/>
-		<put-attribute name="page" value="/index.jsp"/>
+		<put-attribute name="page" value="/WEB-INF/pages/home.jsp"/>
 	</definition>
 	
 	<definition name="error" extends="template">
 		<put-attribute name="title" value="Error Page"/>
-		<put-attribute name="view" value="/WEB-INF/pages/error/error.jsp"/>
+		<put-attribute name="page" value="/WEB-INF/pages/error/error.jsp"/>
 	</definition>
  
 </tiles-definitions>

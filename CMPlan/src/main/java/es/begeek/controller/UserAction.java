@@ -1,7 +1,5 @@
 package es.begeek.controller;
 
-import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -9,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import es.begeek.service.UserService;
@@ -48,15 +45,17 @@ public class UserAction {
 //		return listUsers;
 //	}
 	@RequestMapping(value="/loadUser/{idUser}.htm", method = RequestMethod.GET)
-	public UserView loadUser( @PathVariable Long idUser ){
+	public ModelAndView loadUser( @PathVariable Long idUser ){
 		if (log.isDebugEnabled()) {
 			log.debug("-> loadUser( Long idUser:="+ idUser +" )");
 		}
-		UserView user = userSvc.loadUser(idUser);
+		ModelAndView model = new ModelAndView("user");
+		model.addObject("user",userSvc.loadUser(idUser));
+		model.addObject("listUsers",userSvc.filterList());
 		if (log.isDebugEnabled()) {
-			log.debug("<- loadUser( UserView user:="+ user +" )");
+			log.debug("<- loadUser( UserView user:="+ model.getModel().get("user") +" )");
 		}
-		return user;
+		return model;
 	}
 	@RequestMapping(value="/saveUser.htm", method = RequestMethod.POST)
 	public ModelAndView save(){

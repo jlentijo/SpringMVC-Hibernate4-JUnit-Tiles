@@ -91,7 +91,7 @@
 	
 	<!--	Welcome pages	-->
 	<welcome-file-list>
-		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
 	
 	<!--	Custom error pages - Not exist page error	-->
