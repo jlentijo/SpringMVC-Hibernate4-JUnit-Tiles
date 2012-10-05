@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <ehcache updateCheck="false">
 
-	<diskStore path="D:\cache_projects\cmplan_mvc"/>
+	<diskStore path="D:\Mis Proyectos\cache\cmplan_mvc"/>
 	
 <!--     <cache name="user" maxElementsInMemory="1000" -->
 <!--         eternal="false" -->
@@ -13,24 +13,10 @@
 <!--         diskExpiryThreadIntervalSeconds="120" -->
 <!--         memoryStoreEvictionPolicy="LRU" /> -->
 
-<!-- 	<cache name="user" maxElementsInMemory="1000" -->
-<!--         eternal="false" -->
-<!--         timeToIdleSeconds="120" -->
-<!--         timeToLiveSeconds="120" -->
-<!--         overflowToDisk="true" -->
-<!--         maxElementsOnDisk="1000000" -->
-<!--         diskPersistent="false" -->
-<!--         diskExpiryThreadIntervalSeconds="120" -->
-<!--         memoryStoreEvictionPolicy="LRU" /> -->
-        
-	<defaultCache maxElementsInMemory="10000"
-		eternal="false"
-		timeToIdleSeconds="120"
-		timeToLiveSeconds="120"
-		maxElementsOnDisk="10000000"
-		diskExpiryThreadIntervalSeconds="120"
-		memoryStoreEvictionPolicy="LRU">
-        <persistence strategy="localTempSwap"/>
-    </defaultCache>
+	<defaultCache maxElementsInMemory="10000" eternal="false"
+		timeToIdleSeconds="120" timeToLiveSeconds="120" maxElementsOnDisk="10000000"
+		diskExpiryThreadIntervalSeconds="120" memoryStoreEvictionPolicy="LRU">
+		<persistence strategy="localTempSwap" />
+	</defaultCache>
     
 </ehcache>

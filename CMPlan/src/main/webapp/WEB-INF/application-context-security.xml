@@ -36,7 +36,7 @@
 	<!-- Gestión de usuarios mediante un proveedor de servicios de usuarios: -->
 <!-- 	<authentication-manager alias="autenticationManagerUserService"> -->
 <!-- 		<authentication-provider user-service-ref="UserDetailsServiceBean"> -->
-<!-- 		<password-encoder hash="md5"/> -->
+<!-- 			<password-encoder hash="md5"/> -->
 <!-- 		</authentication-provider> -->
 <!-- 	</authentication-manager> -->
 	<!-- 	Gestion de los permisos mediante anotaciones en el controller o service -->
@@ -55,5 +55,14 @@
 			</user-service>
 		</authentication-provider>
 	</authentication-manager>
+
+<!-- 	<beans:bean id="userCache" class="org.springframework.security.core.userdetails.cache.EhCacheBasedUserCache"> -->
+<!-- 		<beans:property name="cache" ref="userEhCache" /> -->
+<!-- 	</beans:bean> -->
+
+<!-- 	<beans:bean id="userEhCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean"> -->
+<!-- 		<beans:property name="cacheManager" ref="cacheManager" /> -->
+<!-- 		<beans:property name="cacheName" ref="userCache" /> -->
+<!-- 	</beans:bean> -->
 
 </beans:beans>
